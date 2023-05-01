@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
-function TextForm() {
+function TextForm(props) {
+  const { controlleAlert } = props;
   const [text, setText] = useState("");
   function handleOnChange(event) {
     setText(event.target.value);
@@ -9,10 +10,12 @@ function TextForm() {
   function handleOnUpClick(event) {
     let newText = text.toUpperCase();
     setText(newText);
+    controlleAlert("converted to upper case", "success");
   }
   function handleOnLoClick(event) {
     let newText = text.toLowerCase();
     setText(newText);
+    controlleAlert("converted to lower case", "success");
   }
 
   return (
@@ -38,6 +41,7 @@ function TextForm() {
           className="btn btn-primary mx-1"
           onClick={() => {
             setText("");
+            controlleAlert("text is clear", "success");
           }}
         >
           Clear
