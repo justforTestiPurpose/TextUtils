@@ -18,6 +18,12 @@ function TextForm(props) {
     controlleAlert("converted to lower case", "success");
   }
 
+  const handleExtraSpaces = () => {
+    let newText = text.split(/[ ]+/);
+    setText(newText.join(" "));
+    controlleAlert("Extra spaces removed!", "success");
+  };
+
   return (
     <>
       <div className="container my-3">
@@ -31,13 +37,29 @@ function TextForm(props) {
             onChange={handleOnChange}
           ></textarea>
         </div>
-        <button className="btn btn-primary" onClick={handleOnUpClick}>
+        <button
+          disabled={text.length === 0}
+          className="btn btn-primary"
+          onClick={handleOnUpClick}
+        >
           Convert to UpperCase
         </button>
-        <button className="btn btn-primary mx-1" onClick={handleOnLoClick}>
+        <button
+          disabled={text.length === 0}
+          className="btn btn-primary mx-1"
+          onClick={handleOnLoClick}
+        >
           Convert to LowerCase
         </button>
         <button
+          disabled={text.length === 0}
+          className="btn btn-primary mx-1"
+          onClick={handleExtraSpaces}
+        >
+          Remove Extra Spaces
+        </button>
+        <button
+          disabled={text.length === 0}
           className="btn btn-primary mx-1"
           onClick={() => {
             setText("");
