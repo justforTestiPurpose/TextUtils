@@ -24,6 +24,10 @@ function TextForm(props) {
     controlleAlert("Extra spaces removed!", "success");
   };
 
+  const handleCopy = () => {
+    navigator.clipboard.writeText(text);
+    controlleAlert("Copied to Clipboard!", "success");
+  };
   return (
     <>
       <div className="container my-3">
@@ -57,6 +61,13 @@ function TextForm(props) {
           onClick={handleExtraSpaces}
         >
           Remove Extra Spaces
+        </button>
+        <button
+          disabled={text.length === 0}
+          className="btn btn-primary mx-1"
+          onClick={handleCopy}
+        >
+          Copy Text
         </button>
         <button
           disabled={text.length === 0}
